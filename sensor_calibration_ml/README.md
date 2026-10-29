@@ -148,18 +148,13 @@ pm2 start "streamlit run dashboard/app.py --server.port 8502 --server.headless t
 ## Important Notes
 
 ### Model Files (.pkl)
-The trained models (`models/*_rf.pkl`) are excluded from Git via `.gitignore`.
-The dashboard can start without them, but predictions will be unavailable until
-the model files are supplied. When deploying:
-
-- **Option A:** Include `.pkl` files in your repository (remove `*.pkl` from `.gitignore`)
-- **Option B:** Use Git LFS for large model files
-- **Option C:** Store them externally and add a download step to deployment
+The trained models (`models/*_rf.pkl`) are published using Git LFS. Keep Git LFS
+enabled when cloning or deploying so the actual model files, rather than pointer
+files, are available to the app.
 
 ### Data Files (.csv)
-`data/sensor_calibration_clean.csv` is also excluded. The app can start without
-it, but needs the file to infer the available prediction input columns from the
-dataset. Include it in deployment or provide it through your data pipeline.
+`data/sensor_calibration_clean.csv` is published using Git LFS along with the
+models. The original source dataset and generated outputs remain excluded.
 
 ### Port Configuration
 - The app is configured to run on port **8502** by default

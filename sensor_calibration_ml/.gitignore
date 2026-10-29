@@ -9,3 +9,6 @@ __pycache__/
 .idea/
 .vscode/
 *.log
+
+!data/sensor_calibration_clean.csv
+!models/*.pkl
