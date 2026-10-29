@@ -259,5 +259,7 @@ elif page == 'EDA':
 st.markdown('''
 <div class="footer">
     MEMS Calibration Studio &bull; Glassmorphism Dark Theme &bull; Powered by Streamlit &amp; Scikit-Learn
+    <br>
+    GitHub: <a href="https://github.com/andelikhitha" target="_blank" rel="noopener noreferrer">@andelikhitha</a>
 </div>
 ''', unsafe_allow_html=True)
