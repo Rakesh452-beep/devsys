@@ -154,7 +154,10 @@ files, are available to the app.
 
 ### Data Files (.csv)
 `data/sensor_calibration_clean.csv` is published using Git LFS along with the
-models. The original source dataset and generated outputs remain excluded.
+models. The model metrics CSV and EDA chart images under `outputs/` are included
+in the repository because the dashboard uses them for its Model Performance and
+EDA pages. Other generated output files and the original source dataset remain
+excluded.
 
 ### Port Configuration
 - The app is configured to run on port **8502** by default

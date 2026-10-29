@@ -12,3 +12,5 @@ __pycache__/
 
 !data/sensor_calibration_clean.csv
 !models/*.pkl
+!outputs/model_metrics.csv
+!outputs/figures/*.png
