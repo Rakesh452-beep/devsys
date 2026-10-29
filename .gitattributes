@@ -1,0 +1,2 @@
+sensor_calibration_ml/data/sensor_calibration_clean.csv filter=lfs diff=lfs merge=lfs -text
+sensor_calibration_ml/models/*.pkl filter=lfs diff=lfs merge=lfs -text
