@@ -1,0 +1,11 @@
+event_id,description,scope,engines_to_test
+EXCURSION_ETCH,Edge-Ring pattern on wafers etched in ETCH-07 chamber C after PM,etch ts > 2026-09-30 14:00:00,"Root cause, wafer map AI, excursion detector"
+CMP_CENTER,Center pattern on ~55% of CMP-03 wafers,"lots L262211, L262213, L262215","Wafer map AI, root cause"
+VT_SHIFT,WAT Vt_n +18 mV raises Vmin; SB07 VMIN and SB05 FMAX fails rise,"lots L262226, L262227, L262228, L262229, L262230, L262231","Excursion detector, WAT-to-sort correlation, yield forecast"
+PROBE_SITE3,"PC-4412 site 3 needle wear; contact resistance drifts up with touchdowns, SB30 fails ~74% recover on retest",PC-4412 after ~30k touchdowns,"Root cause (probe vs process), retest advice"
+SCRATCH,Occasional scratch on wafers loaded by ROB-02,~6% of ROB-02 wafers,Wafer map AI
+LOCAL_CLUSTER,Random chuck-particle clusters,~3% of all wafers,"Wafer map AI, GDBN"
+RETICLE,"Repeating fail at field position (1,2) of a 3x3 die field","lots L262218, L262219, L262220",Wafer map AI (open-set: class not in WM-811K)
+LATENT_OUTLIERS,"0.3% of die with IDDQ +8 to 11 uA, inside spec; 35% fail burn-in",die_labels.is_latent_outlier,DPAT / NNR evaluation against burnin_fail
+GDBN,Passing die with >=5 failing neighbours have 3% burn-in fail rate (vs 0.03%),die_labels.is_gdbn,GDBN screen evaluation
+REDUNDANT_TEST,RING_OSC is ~0.5 x FMAX (r > 0.98); ADC_INL has almost no fails,"T4120, T6000",Test time optimizer

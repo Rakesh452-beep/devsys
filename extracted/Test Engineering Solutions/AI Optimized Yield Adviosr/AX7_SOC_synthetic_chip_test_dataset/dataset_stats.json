@@ -1,0 +1,22 @@
+{
+  "lots": 40,
+  "wafers": 1000,
+  "die_per_wafer": 500,
+  "sort_rows": 501440,
+  "retest_rows": 1440,
+  "ft_rows": 446715,
+  "mean_final_yield": 0.8934,
+  "mean_first_pass_yield": 0.8915,
+  "burnin_fails": 700,
+  "fail_pareto_final": {
+    "SCAN": 17835,
+    "IDDQ": 12745,
+    "LEAKAGE": 9132,
+    "FMAX": 5612,
+    "MBIST": 4976,
+    "PLL_LOCK": 1893,
+    "VMIN": 722,
+    "CONTACT": 357,
+    "RING_OSC": 13
+  }
+}
