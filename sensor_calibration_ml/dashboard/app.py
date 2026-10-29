@@ -69,13 +69,29 @@ else:
     metrics_df = pd.DataFrame()
 
 available_models = {}
-for f in os.listdir(MODEL_DIR):
-    if f.endswith('_rf.pkl'):
-        target = f.replace('_rf.pkl', '')
-        available_models[target] = os.path.join(MODEL_DIR, f)
+if os.path.isdir(MODEL_DIR):
+    for f in os.listdir(MODEL_DIR):
+        if f.endswith('_rf.pkl'):
+            target = f.replace('_rf.pkl', '')
+            available_models[target] = os.path.join(MODEL_DIR, f)
 
 clean_path = os.path.join(BASE_DIR, 'data', 'sensor_calibration_clean.csv')
-feat_cols = [c for c in FEATURE_BASE + PCM_COLS + POS_COLS if c in pd.read_csv(clean_path, nrows=0).columns]
+if os.path.exists(clean_path):
+    feat_cols = [c for c in FEATURE_BASE + PCM_COLS + POS_COLS if c in pd.read_csv(clean_path, nrows=0).columns]
+else:
+    feat_cols = FEATURE_BASE + PCM_COLS + POS_COLS
+
+missing_assets = []
+if not available_models:
+    missing_assets.append('trained models in models/*_rf.pkl')
+if not os.path.exists(clean_path):
+    missing_assets.append('data/sensor_calibration_clean.csv')
+if missing_assets:
+    st.warning(
+        'Some deployment files are missing: ' + ', '.join(missing_assets) +
+        '. The dashboard will load, but predictions or dataset-dependent features '
+        'will be unavailable until these files are supplied.'
+    )
 
 st.sidebar.markdown('''
 <div style="padding: 1.5rem 1rem;">

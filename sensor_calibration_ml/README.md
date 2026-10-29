@@ -31,13 +31,20 @@ sensor_calibration_ml/
 
 ---
 
+### Vercel compatibility
+
+This project is a Streamlit app, not a Vercel Python serverless function. Vercel's
+`PYTHON_ENTRYPOINT_NOT_FOUND` error is expected for this app; adding a Vercel
+configuration file will not make Streamlit's persistent server and WebSocket
+interface run there. Use Streamlit Community Cloud, Railway, or Render instead.
+
 ### Option 1: Streamlit Cloud (Recommended — Free)
 
 1. Push your code to a public GitHub repository
 2. Go to [share.streamlit.io](https://share.streamlit.io)
 3. Connect your GitHub account
-4. Select your repository
-5. Set the main file path to: `dashboard/app.py`
+4. Select the `master` branch of this repository
+5. Set the main file path to `sensor_calibration_ml/dashboard/app.py`
 6. Click **Deploy**
 
 Your app will be live at `https://your-app.streamlit.app`
@@ -141,14 +148,18 @@ pm2 start "streamlit run dashboard/app.py --server.port 8502 --server.headless t
 ## Important Notes
 
 ### Model Files (.pkl)
-The trained models (`models/*.rf.pkl`) are large and excluded from git via `.gitignore`. When deploying:
+The trained models (`models/*_rf.pkl`) are excluded from Git via `.gitignore`.
+The dashboard can start without them, but predictions will be unavailable until
+the model files are supplied. When deploying:
 
 - **Option A:** Include `.pkl` files in your repository (remove `*.pkl` from `.gitignore`)
 - **Option B:** Use Git LFS for large model files
-- **Option C:** Retrain models on deployment by including `train.py` and running it at startup
+- **Option C:** Store them externally and add a download step to deployment
 
 ### Data Files (.csv)
-Similarly, `data/sensor_calibration_clean.csv` is excluded. Include it in deployment or ensure the data pipeline regenerates it.
+`data/sensor_calibration_clean.csv` is also excluded. The app can start without
+it, but needs the file to infer the available prediction input columns from the
+dataset. Include it in deployment or provide it through your data pipeline.
 
 ### Port Configuration
 - The app is configured to run on port **8502** by default
